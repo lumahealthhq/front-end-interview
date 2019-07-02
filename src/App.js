@@ -12,7 +12,7 @@ import RefferalList from './components/RefferalList';
 import Success from './components/Success';
 // import { parenthesizedExpression } from '@babel/types';
 
-
+// PLEASE SEE NOTES IN README FOR EXPLANATIONS OF PERFORMANCE
 function App() {
   const [list, setList] = useState([
     {
