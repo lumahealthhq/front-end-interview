@@ -1,8 +1,31 @@
 .App {
   text-align: center;
 }
+body {
+  background-color: #CCE8EC;
+}
+#Header-top {
+  background-color: white;
+  padding: 1em 0;
+  color: #132C55;
+}
 
-.App-logo {
+#Title-form {
+  padding-top: 2em;
+  color: #132C55;
+}
+#Title-bottom {
+  padding-bottom: 1em;
+  color: #132C55;
+}
+#Success {
+  padding: 20px;
+  background-color: #00A57A;
+  color: white;
+  border-radius: 0 0 40px 40px;
+  text-align: center;
+}
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
@@ -30,4 +53,84 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+#Form {
+  padding: 25px 20px;
+}
+
+#Send {
+  width: 100%;
+}
+
+#Add {
+  margin-bottom: 2em;
+}
+.Mui-expanded .list-name {
+  left: 55px;
+  position: absolute;
+  bottom: 6px;
+  color: #224C76;
+}
+
+.list-name {
+  left: 55px;
+  position: absolute;
+  bottom: 0;
+  color: #224C76;
+}
+
+.Mui-expanded .trash-icon {
+  position: absolute;
+  left: 17.4em;
+  top: 1px;
+  width: 18px !important;
+  z-index: 2;
+  color: black;
+}
+
+.trash-icon {
+  position: absolute;
+  left: 17.4em;
+  top: 3px;
+  width: 18px !important;
+  z-index: 2;
+  color: black;
+}
+
+.Mui-expanded .list-num {
+  color: white;
+  padding: 15px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border-radius: 4px 0 0 0;
+}
+.list-num {
+  color: white;
+  padding: 10px 15px 6px 15px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border-radius: 4px 0 0 0;
+}
+
+.list-num-1 {
+  background-color: #00A57A;
+}
+
+.list-num-2 {
+  background-color: #0E96A2;
+}
+
+.list-num-3 {
+  background-color: #367297;
+}
+
+.list-num-4 {
+  background-color: #224C76;
+}
+
+.list-num-5 {
+  background-color: #132C55;
 }
