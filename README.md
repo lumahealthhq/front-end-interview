@@ -12,7 +12,7 @@ There is no need to build any backend (api layer, server, database). For simulat
 Up to 8 hours. We do not expect you to complete the assessment in this time.
 
 ## Submission
-1.  Clone this repo
+1.  Fork this repo
 2.  Build Patient Referral Form. Suggested libraries
     -  Material UI components - [https://material-ui.com/](https://material-ui.com/)
     -  Address lookup - [https://www.npmjs.com/package/react-places-autocomplete](https://www.npmjs.com/package/react-places-autocomplete)
