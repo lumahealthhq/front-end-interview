@@ -21,8 +21,13 @@ Up to 8 hours. We do not expect you to complete the assessment in this time.
     -  If you made any assumptions, what are they
     - Outline what else needs to be done if given more time
 
-#Note
+## Note
   - index.html need an api key to work for google places api
+  - The current structure that I built of the list array state is not as performant as it coult be. When you get to the 4-5th form you start to see some imput lag.
+    - A possible fix would be to manage a "current expanded form" state that is not part of the list state. We would then push the form data to the list state array on Click of the add or submit button.
+    This is to stop the array being minipulated after every keystroke (The current structure is doing this). So if a User wishes to edit a previous form, when expanded, that particular form 
+    we create an individual instance of that form again with the current data and only update the array list once instead of everykeystroke
+    - Another possible fix would be to "Throttle" the setState of the list. Instead of updating after every keystroke we can update every 500ms-1sec
 
 
 ## Things that still need to be done
@@ -32,6 +37,7 @@ Up to 8 hours. We do not expect you to complete the assessment in this time.
   - break down App.js into smaller components
   - apply the correct coloring and css
   - add the form header
+  - fix map functions in referralList to not use index as key 
   - apply css so address drop down does not move the entire component down
   - add more babel and web pack preferences to insure cross browser compatibility
   - make mobile friendly
