@@ -16,7 +16,7 @@ import {
 import AutoComplete from './AutoComplete';
 
 const ListItem = (props) => {
-  const { firstName, lastName, dob, language, phoneNumber, email, address, reason } = props.formData
+  const { firstName, lastName, dob, language, phoneNumber, email, address, reason } = props.referral
   const index = props.index;
   const handleDelete = props.handleDelete;
 
