@@ -12,7 +12,7 @@ There is no need to build any backend (api layer, server, database). For simulat
 Up to 8 hours. We do not expect you to complete the assessment in this time.
 
 ## Submission
-1.  Clone this repo
+1.  Fork this repo
 2.  Build Patient Referral Form. Suggested libraries
     -  Material UI components - [https://material-ui.com/](https://material-ui.com/)
     -  Address lookup - [https://www.npmjs.com/package/react-places-autocomplete](https://www.npmjs.com/package/react-places-autocomplete)
@@ -58,6 +58,7 @@ Up to 8 hours. We do not expect you to complete the assessment in this time.
   - A library I would like to learn and use if given more time would be formik.  From medium articles and reviewing the docs at a glance it comes with alot of stuff out of the box like validating inputs,
   more effecient array list management, error messaging and support for react-native. A third party repo appears to have a material-ui wrapper around formik (formik-material-ui) which could have saved me more time.
   - alert or remove the (add patient) button to tell the user they have reached the max referrals (the button does not let them add more than 5 but there is no gesture showing why currently)
+  - need to fix the problem where when sending the form data the default form is sometimes not rendered in its non expanded state
   
     
 
