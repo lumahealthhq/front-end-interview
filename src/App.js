@@ -13,35 +13,22 @@ import Success from './components/Success';
 
 // PLEASE SEE NOTES IN README FOR EXPLANATIONS OF PERFORMANCE
 function App() {
-  const [list, setList] = useState([
-    {
-      firstName: '',
-      lastName: '',
-      dob: '1/1/2000',
-      language: '',
-      phoneNumber: '',
-      email: '',
-      address: '',
-      reason: ''
-    }
-  ]);
+  const emptyPatient = {
+    firstName: '',
+    lastName: '',
+    dob: '1/1/2000',
+    language: '',
+    phoneNumber: '',
+    email: '',
+    address: '',
+    reason: ''
+  }
+  const [list, setList] = useState([emptyPatient]);
   const [count, setCount] = useState(1);
   const [success, setSuccess] = useState(false);
 
   const handleAdd = () => {
-    setList([
-      ...list,  
-      {
-        firstName: '',
-        lastName: '',
-        dob: '1/1/2000',
-        language: '',
-        phoneNumber: '',
-        email: '',
-        address: '',
-        reason: ''
-      }
-    ])
+    setList([...list, emptyPatient])
     setCount(count + 1)
   }
 
@@ -100,29 +87,18 @@ function App() {
     })
 
 
-    const formData = {
+    const referrals = {
       Patients: patients,
     }
 
-    // axios.post('/api/referrals', formData)
+    // axios.post('/api/referrals', referrals)
     //   .then(response => {
     //     if (response.statusCode === 200) {
     //       // render Success Component that the form was successfully submitted
     //     }
     //   })
 
-    setList([
-      {
-        firstName: '',
-        lastName: '',
-        dob: '1/1/2000',
-        language: '',
-        phoneNumber: '',
-        email: '',
-        address: '',
-        reason: ''
-      }
-    ])
+    setList([emptyPatient])
     setSuccess(!success)
   }
 
