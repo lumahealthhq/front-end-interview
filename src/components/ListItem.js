@@ -39,7 +39,7 @@ const ListItem = (props) => {
       }
     }
     props.handleChange({
-      ...props.formData,
+      ...props.referral,
       [`${key}`]: value
     }, index)
   }
