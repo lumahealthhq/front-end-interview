@@ -30,7 +30,7 @@ const ListItem = (props) => {
 
   const changeData = (key, value) => {
     if (key === 'dob') {
-      if (value != 'Invalid Date') {
+      if (value.toString() !== 'Invalid Date') {
         const formatDate = new DateFnsUtils().format(
           value,
           'MM/dd/yyyy'
