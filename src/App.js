@@ -8,7 +8,7 @@ import './App.css';
 
 import axios from 'axios';
 
-import RefferalList from './components/RefferalList';
+import ReferralList from './components/ReferralList';
 import Success from './components/Success';
 // import { parenthesizedExpression } from '@babel/types';
 
@@ -58,7 +58,7 @@ function App() {
     setList([...list])
   }
 
-  const sendRefferals = () => {
+  const sendReferrals = () => {
 
     // 1200 Shaw Avenue, Clovis, CA, USA
     const patients = list.map(patient => {
@@ -146,14 +146,14 @@ function App() {
       <Container maxWidth="md">
         { success ? <Success count={count}/> : null }
         <Typography variant="h6" gutterBottom align="center" id="Title-form">
-              Referal Patients
+              Referral Patients
         </Typography>
         <Typography variant="h6" gutterBottom align="center" id="Title-bottom">
               You can add up to five patients at a time
         </Typography>
       </Container>
       <Container maxWidth="sm">
-        <RefferalList list={list} handleChange={handleChange} handleDelete={handleDelete}/>     
+        <ReferralList list={list} handleChange={handleChange} handleDelete={handleDelete}/>     
         <Grid
           container
           justify="center"
@@ -170,7 +170,7 @@ function App() {
             size="medium"
             color="primary"
             aria-label="Add"
-            onClick={() => sendRefferals()}
+            onClick={() => sendReferrals()}
             // className={classes.margin}
           >
             Send Refferals
@@ -182,30 +182,3 @@ function App() {
 }
 
 export default App;
-
-// Patient: {
-//   firstname: string,
-//   lastname: string,
-//   dateOfBirth: {
-//       year: number,
-//       month: number,
-//       day: number,
-//   },
-//   address1: string, // line 1. eg. 123 fake street
-//   address2: string, // line 2. eg. suite 500
-//   city: string,
-//   state: string,
-//   zipcode: string,
-//   country: string,
-//   language: string,
-//   contacts: [{
-//       active: bool,
-//       type: string, // eg. email, sms, voice, fax
-//       value: string
-//   }]
-// }
-
-// Referral: {
-//   patient: id,
-//   notes: string,
-// }

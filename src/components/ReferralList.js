@@ -1,14 +1,14 @@
 import React from 'react';
 import ListItem from './ListItem.js';
 
-const RefferalList = (props) => {
+const ReferalList = (props) => {
   const listLength = props.list.length;
   let list = ''
   if (listLength) {
 
     list = props.list.map((data, index) => {
       let expanded = true;
-      let title = 'New Refferal';
+      let title = 'New Referral';
       if (listLength > 1 && index < listLength - 1) {
         expanded = false;
         title = `${data.firstName} ${data.lastName}`
@@ -27,4 +27,4 @@ const RefferalList = (props) => {
   )
 }
 
-export default RefferalList;
+export default ReferalList;
