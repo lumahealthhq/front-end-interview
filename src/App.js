@@ -30,7 +30,6 @@ function App() {
   const [success, setSuccess] = useState(false);
 
   const handleAdd = () => {
-    // console.log(list)
     setList([
       ...list,  
       {
@@ -62,7 +61,6 @@ function App() {
 
     // 1200 Shaw Avenue, Clovis, CA, USA
     const patients = list.map(patient => {
-      console.log(patient)
       const dob = patient.dob.split('/');
       const year = Number(dob[2]);
       const month = Number(dob[0]);
@@ -108,16 +106,13 @@ function App() {
       Patients: patients,
     }
 
-    console.log('FORM DATA: ', formData)
-
     // axios.post('/api/referrals', formData)
     //   .then(response => {
     //     if (response.statusCode === 200) {
-    //       console.log('success')
     //       // render Success Component that the form was successfully submitted
     //     }
     //   })
-    //   .catch(error => console.log('ERROR: ', error))
+
     setList([
       {
         firstName: '',

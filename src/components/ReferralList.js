@@ -18,7 +18,6 @@ const ReferalList = (props) => {
   } else {
     list = null
   }
-  // console.log(list)
   return(
     <React.Fragment>
       { list }

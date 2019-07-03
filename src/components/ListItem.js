@@ -29,15 +29,12 @@ const ListItem = (props) => {
   }, [props.expanded])
 
   const changeData = (key, value) => {
-    // console.log(value)
     if (key === 'dob') {
       if (value != 'Invalid Date') {
-        console.log(value)
         const formatDate = new DateFnsUtils().format(
           value,
           'MM/dd/yyyy'
         )
-        // console.log(formatDate)
         value = formatDate
       }
     }
