@@ -14,7 +14,6 @@ const LocationSearchInput = (props) => {
     <PlacesAutocomplete
       value={props.address}
       onChange={handleChange}
-      // onSelect={handleSelect}
     >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <div>

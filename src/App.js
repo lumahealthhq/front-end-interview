@@ -10,7 +10,6 @@ import axios from 'axios';
 
 import ReferralList from './components/ReferralList';
 import Success from './components/Success';
-// import { parenthesizedExpression } from '@babel/types';
 
 // PLEASE SEE NOTES IN README FOR EXPLANATIONS OF PERFORMANCE
 function App() {
@@ -59,7 +58,6 @@ function App() {
 
   const sendReferrals = () => {
 
-    // 1200 Shaw Avenue, Clovis, CA, USA
     const patients = list.map(patient => {
       const dob = patient.dob.split('/');
       const year = Number(dob[2]);
@@ -166,7 +164,6 @@ function App() {
             color="primary"
             aria-label="Add"
             onClick={() => sendReferrals()}
-            // className={classes.margin}
           >
             Send Refferals
           </Fab>
