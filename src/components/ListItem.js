@@ -45,23 +45,43 @@ const ListItem = (props) => {
   }
   return (
     <React.Fragment>
-      <ExpansionPanel expanded={expanded}  onChange={(event, expand) => {setExpanded(!expanded)}}>
+      <ExpansionPanel 
+        expanded={expanded}
+        onChange={() => {setExpanded(!expanded)}}
+      >
         <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
+        >
+          <Typography
+            variant="h6"
+            gutterBottom
+            className={`list-num list-num-${index + 1}`}
           >
-          <Typography variant="h6" gutterBottom className={`list-num list-num-${index + 1}`}>
             {index + 1}
           </Typography>
-          <Typography variant="h6" gutterBottom className="list-name">
+          <Typography 
+            variant="h6"
+            gutterBottom
+            className="list-name"
+          >
             {props.title}
-            <DeleteIcon className="trash-icon" onClick={() => handleDelete(index)}/>
+            <DeleteIcon 
+              className="trash-icon"
+              onClick={() => handleDelete(index)}
+            />
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
+          <Grid 
+            container
+            spacing={3}
+          >
+            <Grid 
+              item xs={12}
+              sm={6}
+            >
               <TextField
                 required
                 id="firstName"
@@ -73,7 +93,11 @@ const ListItem = (props) => {
                 onChange={e => changeData('firstName', e.target.value)}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+            >
               <TextField
                 required
                 id="lastName"
@@ -85,8 +109,11 @@ const ListItem = (props) => {
                 onChange={e => changeData('lastName', e.target.value)}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              
+            <Grid
+              item
+              xs={12}
+              sm={6}
+            >             
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
                   clearable
@@ -98,7 +125,11 @@ const ListItem = (props) => {
                 />
               </MuiPickersUtilsProvider>          
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid 
+              item
+              xs={12}
+              sm={6}
+            >
               <TextField
                 id="contactLanguage"
                 name="contactLanguage"
@@ -109,7 +140,11 @@ const ListItem = (props) => {
                 onChange={e => changeData('language', e.target.value)}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid 
+              item
+              xs={12}
+              sm={6}
+            >
               <TextField
                 required
                 id="phone"
@@ -121,7 +156,11 @@ const ListItem = (props) => {
                 onChange={e => changeData('phoneNumber', e.target.value)}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+            >
               <TextField
                 id="email"
                 name="email"
@@ -131,10 +170,21 @@ const ListItem = (props) => {
                 fullWidth 
               />
             </Grid>
-            <Grid item xs={12} sm={12}>
-              <AutoComplete address={address} changeData={changeData}/>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+            >
+              <AutoComplete
+                address={address}
+                changeData={changeData}
+              />
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+            >
               <TextField
                 required
                 id="reason"
@@ -147,8 +197,7 @@ const ListItem = (props) => {
               />
             </Grid>
           </Grid>
-        </ExpansionPanelDetails>
-        
+        </ExpansionPanelDetails>        
       </ExpansionPanel>
     </React.Fragment>
   )

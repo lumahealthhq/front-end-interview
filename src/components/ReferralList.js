@@ -12,7 +12,17 @@ const ReferalList = (props) => {
       expanded = false;
       title = `${data.firstName} ${data.lastName}`
     }
-    return <ListItem title={title} referral={data} key={index} expanded={expanded} index={index} handleChange={props.handleChange} handleDelete={props.handleDelete}/>
+    return (
+      <ListItem 
+        title={title}
+        referral={data}
+        key={index}
+        expanded={expanded}
+        index={index}
+        handleChange={props.handleChange}
+        handleDelete={props.handleDelete}
+      />
+    )
   })
   return (
     <React.Fragment>

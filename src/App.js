@@ -13,7 +13,7 @@ import Success from './components/Success';
 
 // PLEASE SEE NOTES IN README FOR EXPLANATIONS OF PERFORMANCE
 function App() {
-  const emptyPatient = {
+  const emptyReferral = {
     firstName: '',
     lastName: '',
     dob: '1/1/2000',
@@ -23,12 +23,15 @@ function App() {
     address: '',
     reason: ''
   }
-  const [list, setList] = useState([emptyPatient]);
+  const [list, setList] = useState([emptyReferral]);
   const [count, setCount] = useState(1);
   const [success, setSuccess] = useState(false);
 
   const handleAdd = () => {
-    setList([...list, emptyPatient])
+    if (list.length >= 5) {
+      return
+    }
+    setList([...list, emptyReferral])
     setCount(count + 1)
   }
 
@@ -45,13 +48,13 @@ function App() {
 
   const sendReferrals = () => {
 
-    const patients = list.map(patient => {
-      const dob = patient.dob.split('/');
+    const referrals = list.map(referral => {
+      const dob = referral.dob.split('/');
       const year = Number(dob[2]);
       const month = Number(dob[0]);
       const day = Number(dob[1]);
 
-      const addressArray = patient.address.split(', '); // need to go back and review api or library docs to insure this can be used at all times
+      const addressArray = referral.address.split(', '); // need to go back and review api or library docs to insure this can be used at all times
       const address1 = addressArray[0];
       const city = addressArray[1];
       const state = addressArray[2];
@@ -59,8 +62,8 @@ function App() {
 
       return {
         Patient: {
-          firstName: patient.firstName,
-          lastName: patient.lastName,
+          firstName: referral.firstName,
+          lastName: referral.lastName,
           dateOfBirth: {
             year,
             month,
@@ -81,25 +84,28 @@ function App() {
         },
         Referral: {
           patient: 'id', // need to ask about patient id. will i have this data from authentication data? do i need an api? What is this exactly relating to
-          notes: patient.reason,
+          notes: referral.reason,
         }
       }
-    })
+    });
 
 
-    const referrals = {
-      Patients: patients,
-    }
+    const formData = { referrals };
 
-    // axios.post('/api/referrals', referrals)
+    // axios.post('/api/referrals', formData)
     //   .then(response => {
     //     if (response.statusCode === 200) {
     //       // render Success Component that the form was successfully submitted
+    //       // resetlist back to a single empty referral   
     //     }
     //   })
+    //   .catch(error => {
+    //      // render error message component
+    //      // keep existing data
+    //   })
 
-    setList([emptyPatient])
-    setSuccess(!success)
+    setList([emptyReferral]);
+    setSuccess(!success);
   }
 
   return (
