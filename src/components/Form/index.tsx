@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, FormHTMLAttributes } from 'react';
 import {
   MdAccountCircle,
   MdCake,
@@ -6,77 +6,77 @@ import {
   MdPhone,
   MdEmail,
   MdSearch,
+  MdDelete,
+  MdKeyboardArrowDown,
 } from 'react-icons/md';
 import { FormHandles } from '@unform/core';
 
-import { Link, useHistory } from 'react-router-dom';
+import { usePatient } from '../../hooks/patient';
 
+import ButtonIcon from './ButtonIcon';
 import Input from './Input';
-import Button from '../Button';
 
 import { Container, FormHeader, FormFields } from './styles';
 
-interface SignUpFormData {
-  name: string;
-  email: string;
-  password: string;
+interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
+  id: string;
+  firstName: string;
+  lastName: string;
+  sequential: number;
 }
-const SignUp: React.FC = () => {
+
+interface FormData {
+  id: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  language: string;
+  phone: string;
+  email: string;
+  address: string;
+  notes: string;
+}
+
+const Form: React.FC<FormProps> = ({
+  id,
+  sequential,
+  firstName,
+  lastName,
+}: FormProps) => {
   const formRef = useRef<FormHandles>(null);
-  const history = useHistory();
 
-  // const handleSubmit = useCallback();
-  // async (data: SignUpFormData) => {
-  //   try {
-  //     formRef.current?.setErrors({});
+  const { addPatient, removePatient, patients } = usePatient();
 
-  //     const schema = Yup.object().shape({
-  //       name: Yup.string().required('Nome obrigatório'),
-  //       email: Yup.string()
-  //         .required('E-mail obrigatório')
-  //         .email('Digite um email válido'),
-  //       password: Yup.string().min(6, 'Minímo de 6 caracteres'),
-  //     });
+  console.log(formRef);
 
-  //     await schema.validate(data, {
-  //       abortEarly: false,
-  //     });
+  const handleSubmit = useCallback(
+    (data: FormData) => {
+      const patient = Object.assign(data, { id });
+      addPatient(patient);
+    },
+    [addPatient, id],
+  );
 
-  //     await api.post('/users', data);
-
-  //     history.push('/');
-
-  //     addToast({
-  //       type: 'success',
-  //       title: 'Cadastro realizado!',
-  //       description: 'Pronto, você já pode fazer seu logon no GOBarber!',
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //     if (err instanceof Yup.ValidationError) {
-  //       const errors = getValidationErrors(err);
-
-  //       formRef.current?.setErrors(errors);
-
-  //       return;
-  //     }
-
-  //     addToast({
-  //       type: 'error',
-  //       title: 'Erro no cadastro',
-  //       description: 'Ocorreu um erro ao fazer cadastro, tente novamente',
-  //     });
-  //   }
-  // },
-  // [addToast, history],
+  const headerTitle =
+    firstName || lastName ? `${firstName} ${lastName}` : 'New Referral';
 
   return (
-    <Container ref={formRef} onSubmit={() => {}}>
+    <Container ref={formRef} onSubmit={handleSubmit} id={id}>
       <FormHeader>
         <span>
-          <h2>1</h2>
+          <h2>{sequential}</h2>
         </span>
-        <strong>New Referral</strong>
+        <strong>{headerTitle}</strong>
+        {patients.length > 0 && (
+          <div>
+            <ButtonIcon type="button" onClick={() => removePatient(id)}>
+              <MdDelete size={16} />
+            </ButtonIcon>
+            <ButtonIcon type="button">
+              <MdKeyboardArrowDown size={16} />
+            </ButtonIcon>
+          </div>
+        )}
       </FormHeader>
       <FormFields>
         <Input
@@ -118,4 +118,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default Form;

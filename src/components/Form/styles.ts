@@ -12,6 +12,9 @@ export const Container = styled(Form)`
   border-radius: 5px;
   width: 100%;
   overflow: hidden;
+  & + form {
+    margin-top: 8px;
+  }
 `;
 
 export const FormHeader = styled.div`
@@ -35,8 +38,16 @@ export const FormHeader = styled.div`
   }
 
   strong {
+    flex: 1;
     margin-left: 16px;
     color: #3a719b;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 24px;
   }
 `;
 
