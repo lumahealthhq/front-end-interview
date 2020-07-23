@@ -1,4 +1,9 @@
-import React, { useCallback, useRef, FormHTMLAttributes } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useRef,
+  FormHTMLAttributes,
+} from 'react';
 import {
   MdAccountCircle,
   MdCake,
@@ -8,6 +13,7 @@ import {
   MdSearch,
   MdDelete,
   MdKeyboardArrowDown,
+  MdKeyboardArrowUp,
 } from 'react-icons/md';
 import { FormHandles } from '@unform/core';
 
@@ -18,6 +24,9 @@ import Input from './Input';
 
 import { Container, FormHeader, FormFields } from './styles';
 
+interface Sequential {
+  sequential: 1 | 2 | 3 | 4 | 5;
+}
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   id: string;
   firstName: string;
@@ -47,8 +56,6 @@ const Form: React.FC<FormProps> = ({
 
   const { addPatient, removePatient, patients } = usePatient();
 
-  console.log(formRef);
-
   const handleSubmit = useCallback(
     (data: FormData) => {
       const patient = Object.assign(data, { id });
@@ -57,12 +64,24 @@ const Form: React.FC<FormProps> = ({
     [addPatient, id],
   );
 
+  const [toggle, setToggle] = useState<boolean>(true);
+
+  const toggleAccordion = (): void => {
+    setToggle(!toggle);
+  };
+
   const headerTitle =
     firstName || lastName ? `${firstName} ${lastName}` : 'New Referral';
 
   return (
-    <Container ref={formRef} onSubmit={handleSubmit} id={id}>
-      <FormHeader>
+    <Container
+      patientSeq={sequential}
+      isToggled={toggle}
+      ref={formRef}
+      onSubmit={handleSubmit}
+      id={id}
+    >
+      <FormHeader patientSeq={sequential}>
         <span>
           <h2>{sequential}</h2>
         </span>
@@ -72,8 +91,12 @@ const Form: React.FC<FormProps> = ({
             <ButtonIcon type="button" onClick={() => removePatient(id)}>
               <MdDelete size={16} />
             </ButtonIcon>
-            <ButtonIcon type="button">
-              <MdKeyboardArrowDown size={16} />
+            <ButtonIcon type="button" onClick={() => toggleAccordion()}>
+              {toggle ? (
+                <MdKeyboardArrowDown size={16} />
+              ) : (
+                <MdKeyboardArrowUp size={16} />
+              )}
             </ButtonIcon>
           </div>
         )}
@@ -88,7 +111,7 @@ const Form: React.FC<FormProps> = ({
         <Input
           name="lastName"
           icon={MdAccountCircle}
-          placeholder="First Name"
+          placeholder="Last Name"
           required
         />
         <Input

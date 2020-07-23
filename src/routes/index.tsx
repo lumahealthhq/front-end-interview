@@ -5,7 +5,7 @@ import ReferalForm from '../pages/ReferalForm';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/" component={ReferalForm} />
+    <Route path="/" exact component={ReferalForm} />
   </Switch>
 );
 

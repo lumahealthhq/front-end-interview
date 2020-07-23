@@ -10,7 +10,6 @@ import { Container, Content, TransparentButton } from './styles';
 
 const ReferalForm: React.FC = () => {
   const { patients } = usePatient();
-
   const lastPatientId = useMemo(() => {
     const { id } = patients[patients.length - 1];
     return id;
@@ -22,18 +21,20 @@ const ReferalForm: React.FC = () => {
       <Content>
         <h3>Referral Patients</h3>
         <h4>You can add up to five patients at a time</h4>
+
         {patients &&
           patients.map((patient, index) => (
             <FormPage
               key={patient.id}
               sequential={index + 1}
-              id={String(patient.id)}
+              id={patient.id}
               firstName={patient.firstName}
               lastName={patient.lastName}
             />
           ))}
+
         {patients.length < 5 && (
-          <TransparentButton type="submit" form={String(lastPatientId)}>
+          <TransparentButton type="submit" form={lastPatientId}>
             + ADD ANOTHER PACIENT
           </TransparentButton>
         )}
