@@ -20,9 +20,11 @@ import { FormHandles } from '@unform/core';
 import { usePatient } from '../../hooks/patient';
 import { useExpanded } from '../../hooks/expanded';
 import { useHandle } from '../../hooks/handle';
+import { useToast } from '../../hooks/toast';
 
 import ButtonIcon from './ButtonIcon';
 import Input from './Input';
+// import LocationSearchInput from './LocationSearchInput';
 
 import { Container, FormHeader, FormFields } from './styles';
 
@@ -53,23 +55,51 @@ const Form: React.FC<FormProps> = ({
 }: FormProps) => {
   const formRef = useRef<FormHandles>(null);
 
-  const { addPatient, removePatient, sendReferrals, patients } = usePatient();
+  const {
+    addPatient,
+    removePatient,
+    sendReferrals,
+    clearReferrals,
+    patients,
+  } = usePatient();
   const { switchExpanded, expanded } = useExpanded();
   const { handle } = useHandle();
+  const { addToast } = useToast();
 
   useEffect(() => {
     switchExpanded(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   const handleSubmit = useCallback(
-    (data: FormData) => {
+    (data: FormData, { reset }) => {
       const patient = Object.assign(data, { id });
+
       if (!handle.isSendReferral) {
         addPatient(patient);
+
         patients.length === 5 && switchExpanded(id);
       } else {
-        sendReferrals(patient);
+        try {
+          sendReferrals(patient);
+
+          addToast({
+            type: 'success',
+            title: 'Success!',
+            description:
+              'You have submitted 5 pending referrals. You will be notified once they have been approved',
+          });
+
+          clearReferrals();
+
+          reset();
+        } catch (error) {
+          addToast({
+            type: 'error',
+            title: 'Error sending the referrals. Please try again.',
+            description: 'Ocorreu um erro ao fazer cadastro, tente novamente',
+          });
+        }
       }
     },
     [
@@ -77,17 +107,12 @@ const Form: React.FC<FormProps> = ({
       id,
       handle.isSendReferral,
       sendReferrals,
+      clearReferrals,
       patients.length,
       switchExpanded,
+      addToast,
     ],
   );
-
-  // const [toggle, setToggle] = useState<boolean>(true);
-
-  // const toggleAccordion = (): void => {
-  //   setToggle(!toggle);
-  // };
-
   const headerTitle =
     firstName || lastName ? `${firstName} ${lastName}` : 'New Referral';
 
@@ -147,6 +172,7 @@ const Form: React.FC<FormProps> = ({
         />
         <Input name="phone" icon={MdPhone} placeholder="Phone" required />
         <Input name="email" icon={MdEmail} placeholder="Email" required />
+        {/* <LocationSearchInput /> */}
         <Input
           name="address"
           icon={MdSearch}

@@ -1,8 +1,8 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
-
 import { uuid } from 'uuidv4';
-
 import _ from 'lodash';
+
+import api from '../services/api';
 
 interface PatientData {
   id: string;
@@ -20,6 +20,7 @@ interface PatientContextData {
   addPatient(patient: PatientData): void;
   removePatient(id: string): void;
   sendReferrals(patient: PatientData): void;
+  clearReferrals(): void;
   patients: PatientData[];
 }
 
@@ -73,14 +74,30 @@ export const PatientProvider: React.FC = ({ children }) => {
   const sendReferrals = useCallback(
     async (data: PatientData) => {
       const prevPatient = patients.findIndex(patient => patient.id === data.id);
+
       patients[prevPatient] = data;
+
+      setPatients([...patients]);
+
+      await api.post('/api', patients);
     },
     [patients],
   );
 
+  const clearReferrals = useCallback(async () => {
+    setPatients([initialValue]);
+    console.log(patients);
+  }, [patients]);
+
   return (
     <PatientContext.Provider
-      value={{ patients, addPatient, removePatient, sendReferrals }}
+      value={{
+        patients,
+        addPatient,
+        removePatient,
+        sendReferrals,
+        clearReferrals,
+      }}
     >
       {children}
     </PatientContext.Provider>

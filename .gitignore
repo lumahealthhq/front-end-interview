@@ -2,6 +2,7 @@
 node_modules
 coverage
 npm-debug*
+.env
 
 # MAC
 .DS_Store
