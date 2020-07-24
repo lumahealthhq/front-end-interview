@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
 import { usePatient } from '../../hooks/patient';
+import { useHandle } from '../../hooks/handle';
 
 import Header from '../../components/Header';
 import FormPage from '../../components/Form';
@@ -10,6 +11,8 @@ import { Container, Content, TransparentButton } from './styles';
 
 const ReferalForm: React.FC = () => {
   const { patients } = usePatient();
+  const { addHandle } = useHandle();
+
   const lastPatientId = useMemo(() => {
     const { id } = patients[patients.length - 1];
     return id;
@@ -33,13 +36,21 @@ const ReferalForm: React.FC = () => {
             />
           ))}
 
-        {patients.length < 5 && (
-          <TransparentButton type="submit" form={lastPatientId}>
-            + ADD ANOTHER PACIENT
-          </TransparentButton>
-        )}
+        <TransparentButton
+          onClick={() => addHandle({ isSendReferral: false })}
+          type="submit"
+          form={lastPatientId}
+        >
+          + ADD ANOTHER PACIENT
+        </TransparentButton>
 
-        <Button type="submit">SEND REFERRALS</Button>
+        <Button
+          onClick={() => addHandle({ isSendReferral: true })}
+          type="submit"
+          form={lastPatientId}
+        >
+          SEND REFERRALS
+        </Button>
       </Content>
     </Container>
   );

@@ -1,5 +1,5 @@
 import React, {
-  useState,
+  useEffect,
   useCallback,
   useRef,
   FormHTMLAttributes,
@@ -18,15 +18,14 @@ import {
 import { FormHandles } from '@unform/core';
 
 import { usePatient } from '../../hooks/patient';
+import { useExpanded } from '../../hooks/expanded';
+import { useHandle } from '../../hooks/handle';
 
 import ButtonIcon from './ButtonIcon';
 import Input from './Input';
 
 import { Container, FormHeader, FormFields } from './styles';
 
-interface Sequential {
-  sequential: 1 | 2 | 3 | 4 | 5;
-}
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   id: string;
   firstName: string;
@@ -54,21 +53,40 @@ const Form: React.FC<FormProps> = ({
 }: FormProps) => {
   const formRef = useRef<FormHandles>(null);
 
-  const { addPatient, removePatient, patients } = usePatient();
+  const { addPatient, removePatient, sendReferrals, patients } = usePatient();
+  const { switchExpanded, expanded } = useExpanded();
+  const { handle } = useHandle();
+
+  useEffect(() => {
+    switchExpanded(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = useCallback(
     (data: FormData) => {
       const patient = Object.assign(data, { id });
-      addPatient(patient);
+      if (!handle.isSendReferral) {
+        addPatient(patient);
+        patients.length === 5 && switchExpanded(id);
+      } else {
+        sendReferrals(patient);
+      }
     },
-    [addPatient, id],
+    [
+      addPatient,
+      id,
+      handle.isSendReferral,
+      sendReferrals,
+      patients.length,
+      switchExpanded,
+    ],
   );
 
-  const [toggle, setToggle] = useState<boolean>(true);
+  // const [toggle, setToggle] = useState<boolean>(true);
 
-  const toggleAccordion = (): void => {
-    setToggle(!toggle);
-  };
+  // const toggleAccordion = (): void => {
+  //   setToggle(!toggle);
+  // };
 
   const headerTitle =
     firstName || lastName ? `${firstName} ${lastName}` : 'New Referral';
@@ -76,30 +94,31 @@ const Form: React.FC<FormProps> = ({
   return (
     <Container
       patientSeq={sequential}
-      isToggled={toggle}
+      isToggled={expanded === id}
       ref={formRef}
-      onSubmit={handleSubmit}
       id={id}
+      onSubmit={handleSubmit}
     >
       <FormHeader patientSeq={sequential}>
         <span>
           <h2>{sequential}</h2>
         </span>
         <strong>{headerTitle}</strong>
-        {patients.length > 0 && (
-          <div>
+
+        <div>
+          {patients.length > 1 && (
             <ButtonIcon type="button" onClick={() => removePatient(id)}>
               <MdDelete size={16} />
             </ButtonIcon>
-            <ButtonIcon type="button" onClick={() => toggleAccordion()}>
-              {toggle ? (
-                <MdKeyboardArrowDown size={16} />
-              ) : (
-                <MdKeyboardArrowUp size={16} />
-              )}
-            </ButtonIcon>
-          </div>
-        )}
+          )}
+          <ButtonIcon type="button" onClick={() => switchExpanded(id)}>
+            {expanded !== id ? (
+              <MdKeyboardArrowDown size={16} />
+            ) : (
+              <MdKeyboardArrowUp size={16} />
+            )}
+          </ButtonIcon>
+        </div>
       </FormHeader>
       <FormFields>
         <Input

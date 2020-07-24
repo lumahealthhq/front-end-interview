@@ -19,6 +19,7 @@ interface PatientData {
 interface PatientContextData {
   addPatient(patient: PatientData): void;
   removePatient(id: string): void;
+  sendReferrals(patient: PatientData): void;
   patients: PatientData[];
 }
 
@@ -41,26 +42,22 @@ const initialValue: PatientData = {
 export const PatientProvider: React.FC = ({ children }) => {
   const [patients, setPatients] = useState<PatientData[]>([initialValue]);
 
-  // useEffect(() => {
-  //   if (!patients) {
-  //     setPatients([initialValue]);
-  //   }
-  //   const data = localStorage.getItem('Luma:Patients');
-  //   if (data) {
-  //     setPatients(JSON.parse(data));
-  //   }
-  // }, [patients]);
-
   const addPatient = useCallback(
     async (data: PatientData) => {
-      const prevPatient = patients.findIndex(patient => patient.id === data.id);
-      patients[prevPatient] = data;
+      const patientIndex = patients.findIndex(
+        patient => patient.id === data.id,
+      );
+      patients[patientIndex] = data;
 
-      const newPatient = _.cloneDeep(initialValue);
-      newPatient.id = uuid();
+      if (patients.length < 5) {
+        const newPatient = _.cloneDeep(initialValue);
 
-      setPatients([...patients, newPatient]);
-      // localStorage.setItem('Luma:Patients', JSON.stringify(patients));
+        newPatient.id = uuid();
+
+        setPatients([...patients, newPatient]);
+      } else {
+        setPatients([...patients]);
+      }
     },
     [patients],
   );
@@ -68,15 +65,23 @@ export const PatientProvider: React.FC = ({ children }) => {
   const removePatient = useCallback(
     id => {
       const newPatients = patients.filter(patient => patient.id !== id);
-      console.log(id);
       setPatients(newPatients);
-      // localStorage.setItem('Luma:Patients', JSON.stringify(newPatients));
+    },
+    [patients],
+  );
+
+  const sendReferrals = useCallback(
+    async (data: PatientData) => {
+      const prevPatient = patients.findIndex(patient => patient.id === data.id);
+      patients[prevPatient] = data;
     },
     [patients],
   );
 
   return (
-    <PatientContext.Provider value={{ patients, addPatient, removePatient }}>
+    <PatientContext.Provider
+      value={{ patients, addPatient, removePatient, sendReferrals }}
+    >
       {children}
     </PatientContext.Provider>
   );
