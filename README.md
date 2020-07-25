@@ -1,23 +1,47 @@
-# Luma Front End Engineering Interview
+# Patient Referral Form 🩺
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 
-## Interview Task
+> This is a frontend applicantion for sending Patient Referral Form.
 
-Build the Patient Referral Form using this [design spec](https://www.figma.com/file/XIHFNbIXykq8KosWEIryhoRJ/Patient-Referral-Form-interview?node-id=0%3A1).
+## Dependencies
+Please install this package manager before run the commands.
 
-There is no need to build any backend (api layer, server, database). For simulating form submission, you can do a POST to /api/referrals
+### [Yarn](https://classic.yarnpkg.com/en/docs/install) - Package manager
 
+## Build
+Clone this repository and run the followuing command to install all the dependencies.
+```sh
+yarn install
+```
 
-## Duration
+## Usage
+```sh
+yarn start
+```
+Please, use the following link to access the module.
 
-Up to 8 hours. We do not expect you to complete the assessment in this time.
+### 👤 Client - http://localhost:3000/
+This address is where you can view all the menus, items and their route location created dynamically.
 
-## Submission
-1.  Fork this repo
-2.  Build Patient Referral Form. Suggested libraries
-    -  Material UI components - [https://material-ui.com/](https://material-ui.com/)
-    -  Address lookup - [https://www.npmjs.com/package/react-places-autocomplete](https://www.npmjs.com/package/react-places-autocomplete)
-4.  Submit a Pull Request (PR)
-5.  In the PR, include a README that includes the following:
-    -  If you made any assumptions, what are they
-    - Outline what else needs to be done if given more time
+### 🗄 Database - json-server
+install
+```sh
+yarn add global json-server
+```
+run
+```sh
+yarn json-server db.json  -p 3333
+```
 
+## 🖥 Technologies:
+React.js, React Hooks, Context API, Typescript, Styled Component, React Spring, Unform, Axios and a couple of other libs.
+
+## 🧙🏻‍♂️ Code formatter:
+Eslint, Preetier and Editor Config.
+
+## Author
+
+👤 **João Marcelo Hortale**
+
+* Github: [@jhortale](https://github.com/jhortale)
+* LinkedIn: [@jhortale](https://linkedin.com/in/jhortale)

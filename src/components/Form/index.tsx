@@ -86,8 +86,7 @@ const Form: React.FC<FormProps> = ({
           addToast({
             type: 'success',
             title: 'Success!',
-            description:
-              'You have submitted 5 pending referrals. You will be notified once they have been approved',
+            description: `You have submitted ${patients.length} pending referrals. You will be notified once they have been approved`,
           });
 
           clearReferrals();

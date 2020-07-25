@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  width: 782px;
+  max-width: 782px;
   height: 100vh;
   align-items: center;
   justify-content: flex-start;

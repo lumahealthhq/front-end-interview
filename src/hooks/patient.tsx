@@ -86,8 +86,7 @@ export const PatientProvider: React.FC = ({ children }) => {
 
   const clearReferrals = useCallback(async () => {
     setPatients([initialValue]);
-    console.log(patients);
-  }, [patients]);
+  }, []);
 
   return (
     <PatientContext.Provider
