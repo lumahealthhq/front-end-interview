@@ -1,0 +1,10 @@
+.Header {
+    text-align: center;
+    padding: 2%;
+    background-color: var(--white);
+}
+
+.Header__text {
+    font-size: 30px;
+    line-height: 40px;
+}

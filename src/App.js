@@ -6,7 +6,9 @@ import './App.css';
 const App = () => {
   return (
     <div>
-      <ReferralHeader />
+      <ReferralHeader 
+        establishment="Hayes Valley Health San Francisco" 
+      />
       <ReferralForm />
     </div>
   );
