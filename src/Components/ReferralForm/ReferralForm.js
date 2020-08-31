@@ -4,7 +4,7 @@ import ReferralCard from '../ReferralCard/ReferralCard';
 import './ReferralForm.css';
 
 const ReferralForm = () => {
-  const referralForm = {
+  const referralFields = {
     firstName: "",
     lastName: "",
     dateOfBirth: "",
@@ -16,7 +16,7 @@ const ReferralForm = () => {
   }
 
   const initialValues = {
-    referrals: [{...referralForm}]
+    referrals: [{...referralFields}]
   }
 
   return (
@@ -43,13 +43,22 @@ const ReferralForm = () => {
                       />
                     ))
                   }
-                  <div onClick={() => push({...referralForm})}>
-                    <p>+ ADD ANOTHER PATIENT</p>
-                  </div>
+                  <button 
+                    type="button"
+                    onClick={(e) => push({...referralFields})}
+                    className="Content_button__colorless"
+                  >
+                    + ADD ANOTHER PATIENT
+                  </button>
                 </div>
               )}
             </FieldArray>
-            <button type="submit">SEND REFFERRALS</button>
+            <button 
+              type="submit"
+              className="Content_button"
+            >
+              SEND REFERRALS
+            </button>
           </Form>
         )}
       </Formik>
