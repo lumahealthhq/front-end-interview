@@ -4,6 +4,7 @@
     min-width: 70%;
     width: 500px;
     margin: auto;
+    background-color: var(--background-blue);
 }
 
 .Content_button {
@@ -35,4 +36,5 @@
 	cursor: pointer;
 	outline: inherit;
     color: var(--blue);
+    margin-top: 10px;
 }

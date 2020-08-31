@@ -24,12 +24,14 @@ const ReferralForm = () => {
       <h3>Referral Patients</h3>
       <h4>You can add up to five patients at a time</h4>
       <Formik
+        validateOnChange={false}
+        validateOnBlur={false}
         initialValues={initialValues}
         onSubmit={async (values) => {
           console.log(values)
         }}
       >
-        {({ values }) => (
+        {({ values, handleChange }) => (
           <Form>
             <FieldArray name="referrals">
               {({ remove, push }) => (
@@ -40,12 +42,18 @@ const ReferralForm = () => {
                         referral={referral}
                         index={index}
                         remove={remove}  
+                        handleChange={handleChange}
+                        key={`card${index}`}
                       />
                     ))
                   }
                   <button 
                     type="button"
-                    onClick={(e) => push({...referralFields})}
+                    onClick={(e) => {
+                      if(values.referrals.length < 5) {
+                        push({...referralFields})
+                      }
+                    }}
                     className="Content_button__colorless"
                   >
                     + ADD ANOTHER PATIENT

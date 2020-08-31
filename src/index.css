@@ -7,14 +7,17 @@
   --blue: #0B2B5B;
 }
 
-body, div, p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
+body {
   background-color: var(--background-blue);
-  margin: 0;
-  padding: 0;
 }
 
 h1, h2, h3, h4, p {
   color: var(--blue)
+}
+
+body, div, p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
 }
