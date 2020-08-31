@@ -1,12 +1,15 @@
 import React from 'react';
+// import PlacesAutocomplete from 'react-places-autocomplete';
 import { 
   Accordion, 
   AccordionSummary, 
   AccordionDetails,
   TextField,
   InputAdornment,
-  Grid
+  Grid,
+  IconButton
 } from '@material-ui/core';
+
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CakeIcon from '@material-ui/icons/Cake';
@@ -14,9 +17,10 @@ import TranslateIcon from '@material-ui/icons/Translate';
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailIcon from '@material-ui/icons/Mail';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+
 import './ReferralCard.css';
 
-const ReferralCard = ({ referral, index, remove, handleChange }) => {
+const ReferralCard = ({ referral, index, remove, handleChange, length }) => {
   let name = `${referral.firstName} ${referral.lastName}`
   return (
     <Accordion className="Card">
@@ -25,9 +29,31 @@ const ReferralCard = ({ referral, index, remove, handleChange }) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <div>
-          <h3>{(name.length > 1)?(`${index+1} ${name}`):(`${index+1} New Referral`)}</h3>
-        </div>
+        <Grid 
+          container 
+          justify="space-between"
+          alignItems="center"
+        >
+          <Grid item>
+            <h3>{(name.length > 1)?(`${index+1} ${name}`):(`${index+1} New Referral`)}</h3>
+          </Grid>
+          <Grid item>
+            {(length > 1)?(
+              <IconButton 
+                aria-label="delete"
+                size="small"
+                edge="end"
+                onClick={(e) => {
+                  if(length > 1) {
+                    remove(index)
+                  }
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
+            ):(null)}
+          </Grid>
+        </Grid>
       </AccordionSummary>
       <AccordionDetails className="Card_content">
         <Grid container spacing={3}>

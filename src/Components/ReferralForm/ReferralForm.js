@@ -43,6 +43,7 @@ const ReferralForm = () => {
                         index={index}
                         remove={remove}  
                         handleChange={handleChange}
+                        length={values.referrals.length}
                         key={`card${index}`}
                       />
                     ))
