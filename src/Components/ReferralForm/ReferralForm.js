@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, FieldArray } from 'formik'; 
 import ReferralCard from '../ReferralCard/ReferralCard';
+import { sendReferrals } from '../../Services/refferals';
 import './ReferralForm.css';
 
 const ReferralForm = () => {
+  const [success, setSuccess] = useState(false)
   const referralFields = {
     firstName: "",
     lastName: "",
@@ -21,14 +23,24 @@ const ReferralForm = () => {
 
   return (
     <div className="Content">
-      <h3>Referral Patients</h3>
+      {(success)?(
+        <div className="Content_success">
+          <p className="Content_success__white">Success! You have submitted 5 pending referrals. You will be notified once they've been approved</p>
+        </div>
+      ):(null)}
+      <h3 className="Content__topPadding">Referral Patients</h3>
       <h4>You can add up to five patients at a time</h4>
       <Formik
         validateOnChange={false}
         validateOnBlur={false}
         initialValues={initialValues}
-        onSubmit={async (values) => {
-          console.log(values)
+        onSubmit={async (values, { resetForm }) => {
+          sendReferrals(values).then((response) => {
+            if(response.ok) {
+              setSuccess(true)
+              resetForm(initialValues)
+            }
+          })
         }}
       >
         {({ values, handleChange }) => (

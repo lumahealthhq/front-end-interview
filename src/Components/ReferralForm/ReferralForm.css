@@ -1,10 +1,26 @@
 .Content {
-    padding: 1%;
+    padding: 0 1% 1% 1%;
     text-align: center;
     min-width: 70%;
     width: 500px;
     margin: auto;
     background-color: var(--background-blue);
+}
+
+.Content__topMargin {
+    padding-top: 1%;
+}
+
+.Content_success {
+    background-color: var(--green);
+    font-size: 16px;
+    padding: 10px;
+    border-bottom-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+}
+
+.Content_success__white {
+    color: var(--white);
 }
 
 .Content_button {

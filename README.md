@@ -12,7 +12,6 @@
 *not in any particular order*
 - Create numbered and colored headers for referrals
 - Add input check for mandatory fields
-- Create feedback for user after sending referrals
 - Change inputs to match design spec more precisely
 - Make address field auto-fillable with Google API
 
