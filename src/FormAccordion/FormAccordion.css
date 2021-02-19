@@ -1,0 +1,33 @@
+.FormHeader {
+  height: 64px;
+  display: flex;
+  flex-grow: 1;
+}
+
+.HeaderNumber {
+  background: #25A575;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  border-top-left-radius: 4px;
+}
+
+.HeaderTitle {
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #3A719B;
+  flex-grow: 1;
+}
+
+.DeleteButton {
+  margin: auto;
+}

@@ -1,0 +1,11 @@
+.ReferralForm {
+  background-color: white;
+  flex-grow: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.FormContent {
+  padding: 0 56px 24px 56px;
+}

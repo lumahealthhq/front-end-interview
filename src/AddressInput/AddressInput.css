@@ -1,0 +1,6 @@
+.autocomplete-dropdown-container {
+  position: absolute;
+  z-index: 2;
+  box-shadow: 3px 3px 5px 6px rgba(11, 43, 91, 0.1);
+  width: 638px;
+}

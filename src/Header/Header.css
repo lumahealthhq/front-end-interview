@@ -1,0 +1,20 @@
+.Header {
+  background: white;
+  margin-bottom: 20px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #0B2B5B;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+.HeaderTitle1 {
+  font-size: 30px;
+}
+
+.HeaderTitle2 {
+  font-size: 26px;
+}
