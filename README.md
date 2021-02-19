@@ -5,6 +5,8 @@
 - Auto collapse every card when adding a new patient, except for the one just added.
 - Maintain the expand/collapse state of other cards if 1 card is deleted.
 - The card header is updated as user enters their first and last name.
+- Do not allow collapse the card if it's the only one.
+- Do not allow delete the card if it's the only one.
 
 2. What I would have done if given more time:
 - Make "Contact Language" field a dropdown so users can select which language they want.
