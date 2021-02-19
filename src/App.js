@@ -45,6 +45,9 @@ function App() {
   }
 
   function onToggle(order) {
+    if (forms.length === 1) {
+      return;
+    }
     const newExpand = [...expand];
     newExpand[order-1] = !newExpand[order-1];
     setExpand(newExpand);
