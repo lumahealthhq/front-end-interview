@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "react": "^16.8.6",
+    "react-bootstrap": "^2.7.0",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1"
   },
