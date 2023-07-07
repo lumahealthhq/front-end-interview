@@ -5,9 +5,96 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #808080;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.formHeader {
+  max-width: 1280px;
+  height: 196px;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.formLine {
+  width: 449px;
+  height: 80px;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.formLine p {
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 0em;
+  color: #0b2b5b;
+}
+
+.formSection {
+  max-width: 1280px;
+  height: auto;
+  background-color: #cde7ed;
+  margin: 0 auto;
+}
+.formDiv p:first-child {
+  font-family: Montserrat;
+  color: #0b2b5b;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0em;
+  height: 32px;
+  text-align: center;
+}
+.formDiv p:nth-child(2) {
+  font-family: Montserrat;
+  font-size: 20px;
+  color: #0b2b5b;
+  font-weight: 500;
+  line-height: 32px;
+  height: 32px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.formFields {
+  width: 670px;
+  /* height: 380px; */
+  margin: 2rem auto;
+  border-radius: 4px;
+  background: #fff;
+}
+.formFields p {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  padding-left: 2.5rem;
+  margin-top: -2rem;
+  color: #3A719B;
+}
+.formRow {
+  margin: 0 2rem;
+}
+
+.textField {
+  min-width: 100% !important;
+}
+
+.rectangle {
+  position: absolute;
+}
+
+.formFields h1 {
+  color: #fff;
+  position: relative;
+  left: 12px;
+  top: 5px;
 }
